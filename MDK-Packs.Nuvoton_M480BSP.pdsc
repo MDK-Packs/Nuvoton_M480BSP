@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.6.0">
+  <name>Nuvoton_M480BSP</name>
+  <vendor>MDK-Packs</vendor>
+  <description>Board support pack for Nuvoton M480 based development boards.</description>
+  <!-- empty until the pack gets published -->
+<url>https://github.com/MDK-Packs/Pack/raw/master/M480BSP/</url>
+<repository type="git">https://github.com/MDK-Packs/M480BSP.git</repository>
+  <license>LICENSE.txt</license>
+  <releases>
+    <release version="0.0.1" date="2022-01-26">
+      Initial Release
+    </release>
+  </releases>
+
+<requirements>
+  <packages>
+    <package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.13"/>
+  </packages>
+</requirements>
+
+<conditions>
+  <condition id="M480">
+    <description>Nuvoton M480 Devices</description>
+    <require Dvendor="Nuvoton:18" Dname="M48*"/>
+  </condition>
+  <condition id="NuMaker-PFM-M487KM VIO">
+    <description>Virtual I/O driver</description>
+    <require condition="M480"/>
+    <require Cclass="Device" Cgroup="StdDriver" Csub="GPIO"/>
+    <require Cclass="Device" Cgroup="Startup"/>
+  </condition>
+</conditions>
+
+  <components>
+    <!-- VIO driver -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-PFM-M487KM" Cversion="1.0.1" Capiversion="0.1.0" condition="NuMaker-PFM-M487KM VIO">
+      <description>Virtual I/O implementation for Nuvoton NuMaker-PFM-M487KM Board</description>
+      <RTE_Components_h>
+            #define RTE_VIO_BOARD
+            #define RTE_VIO_NUMAKER_PFM_M487KM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Library/Drivers/Platform/vio_NuMaker-PFM-M487KM.c"/>
+      </files>
+    </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="ACMP" Cversion="1.0.0" condition="M480">
+      <description>Analog Comparator (ACMP) driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___a_c_m_p___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/acmp.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/acmp.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="BPWM" Cversion="1.0.0" condition="M480">
+      <description>BPWM driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___b_p_w_m___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/bpwm.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/bpwm.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="CAM" Cversion="1.0.0" condition="M480">
+      <description>CAN driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___c_a_n___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/can.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/can.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="CCAP" Cversion="1.0.0" condition="M480">
+      <description>CCAP driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___c_c_a_p___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/ccap.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/ccap.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="CLK" Cversion="1.0.0" condition="M480">
+      <description>CLK driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___c_l_k___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/clk.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/clk.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="CRC" Cversion="1.0.0" condition="M480">
+      <description>CRC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___c_r_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/crc.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/crc.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="Crypto" Cversion="1.0.0" condition="M480">
+      <description>Crypto driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___c_r_y_p_t_o___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/crypto.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/crypto.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="DAC" Cversion="1.0.0" condition="M480">
+      <description>DAC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___d_a_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/dac.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/dac.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="EADC" Cversion="1.0.0" condition="M480">
+      <description>EADC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___e_a_d_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/eadc.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/eadc.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="EBI" Cversion="1.0.0" condition="M480">
+      <description>EBI driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___e_b_i___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/ebi.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/ebi.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="ECAP" Cversion="1.0.0" condition="M480">
+      <description>ECAP driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___e_c_a_p___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/ecap.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/ecap.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="EMAC" Cversion="1.0.0" condition="M480">
+      <description>EMAC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___e_m_a_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/emac.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/emac.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="EPWM" Cversion="1.0.0" condition="M480">
+      <description>EPWM driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___e_p_w_m___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/epwm.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/epwm.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="FMC" Cversion="1.0.0" condition="M480">
+      <description>FMC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___f_m_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/fmc.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/fmc.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="GPIO" Cversion="1.0.0" condition="M480">
+      <description>GPIO driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___g_p_i_o___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/gpio.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/gpio.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="HSUSBD" Cversion="1.0.0" condition="M480">
+      <description>HSUSBD driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___h_s_u_s_b_d___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/hsusbd.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/hsusbd.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="I2C" Cversion="1.0.0" condition="M480">
+      <description>I2C driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___i2_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/i2c.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/i2c.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="I2S" Cversion="1.0.0" condition="M480">
+      <description>I2S driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___i2_s___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/i2s.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/i2s.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="PDMA" Cversion="1.0.0" condition="M480">
+      <description>PDMA driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___p_d_m_a___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/pdma.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/pdma.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="QEI" Cversion="1.0.0" condition="M480">
+      <description>QEI driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___q_e_i___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/qei.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/qei.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="QSPI" Cversion="1.0.0" condition="M480">
+      <description>QSPI driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___q_s_p_i___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/qspi.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/qspi.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="Retarget" Cversion="1.0.0" condition="M480">
+      <description>Debug Port and Semihost Setting driver for Nuvoton M480</description>
+        <files>
+        <file category="sourceC" name="Library/StdDriver/src/retarget.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="RTC" Cversion="1.0.0" condition="M480">
+      <description>RTC driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___r_t_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/rtc.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/rtc.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SC" Cversion="1.0.0" condition="M480">
+      <description>Smartcard (SC) driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/sc.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/sc.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SCUART" Cversion="1.0.0" condition="M480">
+      <description>Smartcard UART driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_c_u_a_r_t___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/scuart.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/scuart.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SDH" Cversion="1.0.0" condition="M480">
+      <description>SDH driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_d_h___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/sdh.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/sdh.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SPI" Cversion="1.0.0" condition="M480">
+      <description>SPI driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_p_i___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/spi.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/spi.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SPIM" Cversion="1.0.0" condition="M480">
+      <description>SPIM driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_p_i_m___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/spim.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/spim.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="SYS" Cversion="1.0.0" condition="M480">
+      <description>SYS driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___s_y_s___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/sys.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/sys.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="Timer" Cversion="1.0.0" condition="M480">
+      <description>Timer Controller (Timer) driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___t_i_m_e_r___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/timer.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/timer.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="Timer_PWM" Cversion="1.0.0" condition="M480">
+      <description>Timer PWM Controller (Timer PWM) driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___t_i_m_e_r___p_w_m___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/timer_pwm.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/timer_pwm.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="TRNG" Cversion="1.0.0" condition="M480">
+      <description>TRNG driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___t_r_n_g___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/trng.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/trng.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="UART" Cversion="1.0.0" condition="M480">
+      <description>UART driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___u_a_r_t___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/uart.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/uart.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="USBD" Cversion="1.0.0" condition="M480">
+      <description>USBD driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___u_s_b_d___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/usbd.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/usbd.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_I2C" Cversion="1.0.0" condition="M480">
+      <description>USCI_I2C driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___u_s_c_i___i2_c___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/usci_i2c.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/usci_i2c.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_SPI" Cversion="1.0.0" condition="M480">
+      <description>USCI_SPI driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___u_s_c_i___s_p_i___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/usci_spi.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/usci_spi.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_UART" Cversion="1.0.0" condition="M480">
+      <description>USCI_UART driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___u_s_c_i___u_a_r_t___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/usci_uart.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/usci_uart.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="WDT" Cversion="1.0.0" condition="M480">
+      <description>WDT driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___w_d_t___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/wdt.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/wdt.c"/>
+        </files>
+      </component>
+      <component Cclass="Device" Cgroup="StdDriver" Csub="WWDT" Cversion="1.0.0" condition="M480">
+      <description>WWDT driver for Nuvoton M480</description>
+        <files>
+        <file category="doc" name="Document/html/group___w_w_d_t___driver.html"/>
+        <file category="header"  name="Library/StdDriver/inc/wwdt.h"/>
+        <file category="sourceC" name="Library/StdDriver/src/wwdt.c"/>
+        </files>
+      </component>
+  </components>
+
+<boards>
+  <board vendor="Nuvoton" name="NuMaker-PFM-M487KM" revision="1.0" orderForm="https://www.nuvoton.com/buy/buy-on-line/">
+    <description>The NuMaker-PFM-M487KM offers M487KMCAN full pins extension connectors and Arduino UNO compatible extension connectors.</description>
+    <image large="Document/NuMaker-PFM-M487KM.png" public="true"/>
+    
+    <book category="overview"  name="https://www.nuvoton.com/board/numaker-pfm-m487km/" title="NuMaker-PFM-M487KM Web Page"/>
+    <book category="setup"     name="https://www.nuvoton.com/board/numaker-pfm-m487km/?index=2" title="Quick Start"/>
+    <book category="setup"     name="Document/M480 emWin Quick Start Guide.pdf" title="emWin Quick Start Guide" public="true"/>
+    <book category="schematic" name="Document/NUMAKER-PFM-M487_V3_0.pdf" title="Schematics" public="true"/>
+    <book category="other"     name="Document/README.md" title="Guide" public="true"/>
+    
+    <mountedDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M487JIDAE"/>
+    
+    <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dfamily="M480"/>
+    
+    <feature type="ODbg"      n="1"          name="On-board Nu-LInk2"/>
+    <feature type="PWR"       n="5"          name="USB Powered"/>
+    <feature type="DIO"       n="128"        name="Full pins extension connectors"/>
+    <feature type="MemCard"   n="1"          name="MicroSD Card slot for T-Flash"/>
+    <feature type="ETH"       n="1"          name="PHY IP101GR connected RJ45 receptacle"/>
+    <feature type="USB"       n="2"          name="1 x USB 2.0 High-Speed OTG/Host/Device, 1 x USB 1.1 Full-Speed OTG/Host/Device"/>
+    <feature type="MIC"       n="1"          name="Audio codec (NAU88L25) with Microphone In and Headphone Out"/>
+    <feature type="ConnOther" n="2"          name="Arduino UNO compatible headers"/>
+    <feature type="Button"    n="2"          name="Push-buttons: Reset, 2 x User"/>
+    <feature type="LED"       n="2"          name="Two user LEDs (green, red)"/>
+    <feature type="CustomFF"  n="142" m="62" name="NuMaker Formfactor"/>
+    
+    <debugInterface adapter="NNu-Link" connector="Micro-USB"/>
+  </board>
+</boards>
+
+<examples>
+  <example name="Blinky" doc="README.md" folder="SampleCode/Blinky">
+    <description>CMSIS-RTOS2 Blinky example with VIO</description>
+    <board name="NuMaker-PFM-M487KM" vendor="Nuvoton"/>
+    <project>
+      <environment name="uv" load="Blinky.uvprojx"/>
+    </project>
+    <attributes>
+      <component Cclass="Device" Cgroup="Startup"/>
+      <component Cclass="CMSIS" Cgroup="CORE"/>
+      <component Cclass="CMSIS" Cgroup="RTOS"/>
+      <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+      <category>Getting Started</category>
+    </attributes>
+  </example>
+  <example name="Platform" doc="README.md" folder="SampleCode/Platform">
+    <description>Platform example</description>
+    <board name="NuMaker-PFM-M487KM" vendor="Nuvoton"/>
+    <project>
+      <environment name="uv" load="Platform.uvprojx"/>
+    </project>
+    <attributes>
+      <component Cclass="Device" Cgroup="Startup"/>
+      <component Cclass="CMSIS" Cgroup="CORE"/>
+      <component Cclass="CMSIS" Cgroup="RTOS"/>
+      <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+      <category>Getting Started</category>
+    </attributes>
+  </example>
+</examples>
+</package>

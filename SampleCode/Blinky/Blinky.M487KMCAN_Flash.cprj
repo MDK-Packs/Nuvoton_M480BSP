@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<cprj schemaVersion="1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CPRJ.xsd">
+
+  <created timestamp="2022-01-26T11:56:05" tool="uVision V5.36.0.0"/>
+
+  <info>
+    <name>Blinky</name>
+    <description/>
+  </info>
+
+  <packages>
+    <package name="CMSIS" vendor="ARM"/>
+    <package name="Nuvoton_M480BSP" vendor="MDK-Packs"/>
+    <package name="NuMicro_DFP" vendor="Nuvoton"/>
+    <package name="ARM_Compiler" vendor="Keil"/>
+  </packages>
+
+  <compilers>
+    <compiler name="AC6" version="6.0.0:6.99.99"/>
+  </compilers>
+
+  <target Ddsp="NO_DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmve="NO_MVE" Dname="M487JIDAE" Dsecure="Non-secure" Dtz="NO_TZ" Dvendor="Nuvoton:18">
+    <output intdir="./Objects/" name="Blinky" outdir="./Objects/" type="exe"/>
+    <ldflags add="--strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols --info sizes --info totals --info unused --info veneers --entry=Reset_Handler" compiler="AC6" file="./Blinky.M487KMCAN Flash.sct"/>
+    <cflags add="-O1 -Wno-documentation -Wno-documentation-unknown-command -Wno-license-management -Wno-missing-noreturn -Wno-missing-prototypes -Wno-missing-variable-declarations -Wno-nonportable-include-path -Wno-packed -Wno-parentheses-equality -Wno-reserved-id-macro -Wno-sign-conversion -Wno-unused-macros -ffunction-sections -fno-rtti -fshort-enums -fshort-wchar -funsigned-char -gdwarf-4 -std=c99 -xc" compiler="AC6"/>
+    <asflags add="-gdwarf-4 -masm=auto" compiler="AC6"/>
+    <includes/>
+    <defines>M487KMCAN</defines>
+  </target>
+
+  <components>
+    <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM"/>
+    <component Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM">
+      <file attr="config" category="source" name="CMSIS/RTOS2/RTX/Config/RTX_Config.c" version="5.1.1"/>
+      <file attr="config" category="header" name="CMSIS/RTOS2/RTX/Config/RTX_Config.h" version="5.5.2"/>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-PFM-M487KM" Cvendor="MDK-Packs"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="Nuvoton">
+      <file attr="config" category="sourceAsm" name="Device/M480/Source/ARM/startup_M480.s" version="0.00.001"/>
+      <file attr="config" category="source" name="Device/M480/Source/system_M480.c" version="0.00.001"/>
+      <file attr="config" category="sourceC" name="Device/M480/StdDriver/src/retarget.c" version="0.00.001"/>
+    </component>
+    <component Cclass="Device" Cgroup="StdDriver" Csub="CLK" Cvendor="MDK-Packs"/>
+    <component Cclass="Device" Cgroup="StdDriver" Csub="GPIO" Cvendor="MDK-Packs"/>
+    <component Cclass="Device" Cgroup="StdDriver" Csub="SYS" Cvendor="MDK-Packs"/>
+    <component Cbundle="ARM Compiler" Cclass="Compiler" Cgroup="Event Recorder" Cvariant="DAP" Cvendor="Keil">
+      <file attr="config" category="header" name="Config/EventRecorderConf.h" version="1.1.0"/>
+    </component>
+  </components>
+
+  <files>
+    <group name="Source">
+      <file category="sourceC" name="./Blinky.c"/>
+      <file category="sourceC" name="./main.c"/>
+    </group>
+    <group name="Documentation">
+      <file category="doc" name="./README.md"/>
+    </group>
+  </files>
+
+</cprj>
